@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROG Strix SCAR 16 — Notebook Gamer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ── VARIÁVEIS ──────────────────────────────────── */
+        :root {
+            --bg: #070707;
+            --surface: #0f0f0f;
+            --surface-2: #151515;
+            --border: #1e1e1e;
+            --border-2: #2a2a2a;
+            --text: #d8d8d8;
+            --muted: #555;
+            --accent: #ff2a2a;
+            --accent-dim: rgba(255, 42, 42, 0.10);
+            --accent-glow: rgba(255, 42, 42, 0.28);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+
+        /* ── HERO ───────────────────────────────────────── */
+        /*
+            Elemento-assinatura: "SCAR" gigante como marca
+            d'água atrás do conteúdo. Spotlight vermelho
+            vindo do topo simula refletor de palco.
+        */
+        .hero {
+            position: relative;
+            padding: 88px 48px 80px;
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -220px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 520px;
+            background: radial-gradient(ellipse at top,
+                    rgba(255, 42, 42, 0.09) 0%,
+                    transparent 68%);
+            pointer-events: none;
+        }
+
+        .watermark {
+            position: absolute;
+            right: -32px;
+            bottom: -56px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(120px, 18vw, 240px);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 42, 42, 0.07);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(255, 42, 42, 0.22);
+            color: var(--accent);
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 4px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.6rem, 7.5vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.0;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        h1 .destaque {
+            color: var(--accent);
+            text-shadow: 0 0 48px rgba(255, 42, 42, 0.45);
+        }
+
+        .tagline {
+            font-size: 0.92rem;
+            color: var(--muted);
+            max-width: 420px;
+        }
+
+        /* ── LAYOUT PRINCIPAL ───────────────────────────── */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 64px 48px 96px;
+        }
+
+        section {
+            margin-bottom: 64px;
+        }
+
+        h2 {
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            white-space: nowrap;
+        }
+
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── FIGURA / IMAGEM ────────────────────────────── */
+        figure {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 64px;
+        }
+
+        figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .img-placeholder {
+            height: 300px;
+            background: linear-gradient(150deg, #0f0f0f 0%, #1c0808 55%, #0f0f0f 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 55% 55% at 50% 50%,
+                    rgba(255, 42, 42, 0.06) 0%, transparent 100%);
+        }
+
+        .placeholder-icon {
+            font-size: 2.8rem;
+            opacity: 0.25;
+        }
+
+        .placeholder-path {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #333;
+            background: #111;
+            padding: 4px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--border);
+        }
+
+        figcaption {
+            padding: 12px 20px;
+            font-size: 0.80rem;
+            color: var(--muted);
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            font-style: italic;
+        }
+
+        /* ── LISTA NÃO-ORDENADA ─────────────────────────── */
+        ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 7px;
+        }
+
+        ul li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 2px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.90rem;
+            color: #c8c8c8;
+            transition: background 0.15s, border-left-color 0.15s;
+        }
+
+        ul li:hover {
+            background: var(--surface-2);
+            border-left-color: #ff5555;
+        }
+
+        /* ── LISTA ORDENADA ─────────────────────────────── */
+        ol {
+            list-style: none;
+            padding: 0;
+            counter-reset: passo;
+            display: grid;
+            gap: 7px;
+        }
+
+        ol li {
+            counter-increment: passo;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 13px 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.90rem;
+            color: #c8c8c8;
+        }
+
+        ol li::before {
+            content: counter(passo, decimal-leading-zero);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.0rem;
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+            min-width: 24px;
+            padding-top: 1px;
+        }
+
+        /* ── TABELA ─────────────────────────────────────── */
+        .table-shell {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.87rem;
+        }
+
+        caption {
+            caption-side: top;
+            text-align: left;
+            padding: 13px 20px;
+            font-size: 0.73rem;
+            color: #333;
+            font-style: italic;
+            background: #080808;
+            border-bottom: 1px solid var(--border);
+        }
+
+        thead tr {
+            background: #080808;
+        }
+
+        thead th {
+            text-align: left;
+            padding: 12px 20px;
+            font-size: 0.63rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #3a3a3a;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.12s;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:nth-child(even) td {
+            background: #0c0c0c;
+        }
+
+        tbody tr:hover td {
+            background: #131313;
+        }
+
+        tbody td {
+            padding: 12px 20px;
+        }
+
+        tbody td:first-child {
+            width: 34%;
+            color: var(--muted);
+            font-size: 0.76rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            border-right: 1px solid var(--border);
+        }
+
+        tfoot td {
+            padding: 11px 20px;
+            font-size: 0.72rem;
+            color: #2e2e2e;
+            font-style: italic;
+            background: #080808;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── LINKS / BOTÕES ─────────────────────────────── */
+        .link-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 7px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.84rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #e01f1f;
+            box-shadow: 0 0 28px var(--accent-glow);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #808080;
+            border: 1px solid var(--border-2);
+        }
+
+        .btn-ghost:hover {
+            background: var(--surface);
+            color: #d0d0d0;
+        }
+
+        /* ── RODAPÉ ─────────────────────────────────────── */
+        footer {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 28px;
+            font-size: 0.72rem;
+            color: #222;
+        }
+
+        /* ── RESPONSIVO ─────────────────────────────────── */
+        @media (max-width: 620px) {
+            .hero {
+                padding: 60px 24px 60px;
+            }
+
+            main {
+                padding: 48px 24px 72px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+        <div class="watermark" aria-hidden="true">SCAR</div>
+        <div class="hero-inner">
+            <div class="badge">🔴 ROG Strix · 2025</div>
+            <h1>ROG Strix <span class="destaque">SCAR 16</span></h1>
+            <p class="tagline">
+                Intel Core Ultra 9 275HX · RTX 5070 Ti · 32 GB · 1 TB SSD
+                — construído para dominar qualquer jogo.
+            </p>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- ── IMAGEM COM SRC RELATIVO, ALT E LEGENDA ── -->
+        <!--
+            A imagem é exibida por padrão.
+            O placeholder só aparece se o arquivo não for encontrado.
+        -->
+        <figure>
+            <img src="imagens/rog-scar-16.webp"
+                alt="Notebook ASUS ROG Strix SCAR 16 aberto sobre mesa, com iluminação RGB vermelha no teclado e tela ligada exibindo jogo"
+                width="900" height="300" onerror="this.style.display='none';
+                         this.nextElementSibling.style.display='flex';">
+            <div class="img-placeholder" style="display: none;">
+                <span class="placeholder-icon">🎮</span>
+                <span class="placeholder-path">imagens/rog-scar-16.webp</span>
+            </div>
+            <figcaption>
+                ASUS ROG Strix SCAR 16 (2025) — design agressivo com iluminação Aura Sync RGB.
+            </figcaption>
+        </figure>
+
+        <!-- ── LISTA NÃO-ORDENADA: CARACTERÍSTICAS ── -->
+        <section>
+            <h2>Características</h2>
+            <ul>
+                <li>Processador Intel Core Ultra 9 275HX com até 5,4 GHz de turbo</li>
+                <li>NVIDIA GeForce RTX 5070 Ti com 16 GB GDDR7</li>
+                <li>32 GB de memória RAM DDR5 5600 MHz (dois slots SO-DIMM)</li>
+                <li>1 TB SSD NVMe PCIe Gen 4 com leitura de até 7.400 MB/s</li>
+                <li>Tela ROG Nebula 16" QHD+ (2560×1600) 240 Hz, 100% DCI-P3</li>
+                <li>MUX Switch e NVIDIA Advanced Optimus para máximo desempenho gráfico</li>
+                <li>Teclado por tecla com iluminação RGB Aura Sync e N-key rollover</li>
+                <li>ROG Intelligent Cooling com sistema tri-ventilador e Liquid Metal</li>
+                <li>Wi-Fi 7 (802.11be) e Thunderbolt 4</li>
+            </ul>
+        </section>
+
+        <!-- ── LISTA ORDENADA: PASSOS DE USO ── -->
+        <section>
+            <h2>Como Configurar</h2>
+            <ol>
+                <li>Conecte o carregador de 330 W e ligue o notebook pressionando o botão de energia.</li>
+                <li>Siga o assistente de configuração inicial do Windows 11 — idioma, conta e preferências de
+                    privacidade.</li>
+                <li>Instale o <strong>Armoury Crate</strong> e aplique os drivers de GPU, áudio e chipset mais recentes.
+                </li>
+                <li>No Armoury Crate, ative o <strong>MUX Switch</strong> (requer reinicialização) para desempenho
+                    gráfico máximo.</li>
+                <li>Escolha o perfil de desempenho: Silencioso, Balanceado, Turbo ou Manual.</li>
+                <li>Personalize a iluminação RGB pelo Armoury Crate com os perfis Aura Sync.</li>
+                <li>Instale seus jogos e aproveite — o SCAR 16 entrega frames, você entrega resultados.</li>
+            </ol>
+        </section>
+
+        <!-- ── TABELA DE ESPECIFICAÇÕES ── -->
+        <section>
+            <h2>Especificações Técnicas</h2>
+            <div class="table-shell">
+                <table>
+                    <caption>
+                        Especificações completas do ASUS ROG Strix SCAR 16 — Modelo G634JYR (2025)
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>Componente</th>
+                            <th>Especificação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Processador</td>
+                            <td>Intel Core Ultra 9 275HX — 24 núcleos, até 5,4 GHz, 55–175 W</td>
+                        </tr>
+                        <tr>
+                            <td>Placa de Vídeo</td>
+                            <td>NVIDIA GeForce RTX 5070 Ti — 16 GB GDDR7</td>
+                        </tr>
+                        <tr>
+                            <td>Memória RAM</td>
+                            <td>32 GB DDR5 5600 MHz — 2× SO-DIMM (expansível a 64 GB)</td>
+                        </tr>
+                        <tr>
+                            <td>Armazenamento</td>
+                            <td>1 TB SSD NVMe PCIe Gen 4 (2.º slot M.2 disponível)</td>
+                        </tr>
+                        <tr>
+                            <td>Tela</td>
+                            <td>16" ROG Nebula QHD+ (2560×1600) — 240 Hz — 100% DCI-P3 — 3 ms</td>
+                        </tr>
+                        <tr>
+                            <td>Resfriamento</td>
+                            <td>ROG Intelligent Cooling — tri-ventilador — Liquid Metal no CPU</td>
+                        </tr>
+                        <tr>
+                            <td>Conectividade</td>
+                            <td>Wi-Fi 7 (802.11be) — Bluetooth 5.4 — Thunderbolt 4</td>
+                        </tr>
+                        <tr>
+                            <td>Bateria</td>
+                            <td>90 Wh — carregador 330 W incluído</td>
+                        </tr>
+                        <tr>
+                            <td>Sistema Operacional</td>
+                            <td>Windows 11 Home 64-bit</td>
+                        </tr>
+                        <tr>
+                            <td>Peso</td>
+                            <td>2,5 kg</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                * Especificações sujeitas a alteração sem aviso prévio. Consulte o site oficial da ASUS
+                                para informações atualizadas.
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <!-- ── LINKS: EXTERNO (target="_blank") E INTERNO ── -->
+        <section>
+            <h2>Links Úteis</h2>
+            <div class="link-row">
+                <!-- link externo -->
+                <a href="https://rog.asus.com/br/laptops/rog-strix/rog-strix-scar-16-2025/" target="_blank"
+                    class="btn btn-primary">
+                    ↗ Site oficial ROG SCAR 16
+                </a>
+                <!-- link interno -->
+                <a href="atividade_a.html" class="btn btn-ghost">
+                    ← Inteligência Artificial
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Atividade B &mdash; Programação Web &mdash; HTML5</p>
+    </footer>
+
+</body>
+
+</html>
