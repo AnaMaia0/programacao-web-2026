@@ -11,7 +11,6 @@
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
     <style>
-        /* ── VARIÁVEIS ──────────────────────────────────── */
         :root {
             --bg: #070707;
             --surface: #0f0f0f;
@@ -41,12 +40,6 @@
             overflow-x: hidden;
         }
 
-        /* ── HERO ───────────────────────────────────────── */
-        /*
-            Elemento-assinatura: "SCAR" gigante como marca
-            d'água atrás do conteúdo. Spotlight vermelho
-            vindo do topo simula refletor de palco.
-        */
         .hero {
             position: relative;
             padding: 88px 48px 80px;
@@ -127,7 +120,6 @@
             max-width: 420px;
         }
 
-        /* ── LAYOUT PRINCIPAL ───────────────────────────── */
         main {
             max-width: 900px;
             margin: 0 auto;
@@ -158,7 +150,6 @@
             background: var(--border);
         }
 
-        /* ── FIGURA / IMAGEM ────────────────────────────── */
         figure {
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -216,7 +207,6 @@
             font-style: italic;
         }
 
-        /* ── LISTA NÃO-ORDENADA ─────────────────────────── */
         ul {
             list-style: none;
             padding: 0;
@@ -243,7 +233,6 @@
             border-left-color: #ff5555;
         }
 
-        /* ── LISTA ORDENADA ─────────────────────────────── */
         ol {
             list-style: none;
             padding: 0;
@@ -276,7 +265,6 @@
             padding-top: 1px;
         }
 
-        /* ── TABELA ─────────────────────────────────────── */
         .table-shell {
             border: 1px solid var(--border);
             border-radius: 10px;
@@ -355,7 +343,6 @@
             border-top: 1px solid var(--border);
         }
 
-        /* ── LINKS / BOTÕES ─────────────────────────────── */
         .link-row {
             display: flex;
             flex-wrap: wrap;
@@ -396,7 +383,6 @@
             color: #d0d0d0;
         }
 
-        /* ── RODAPÉ ─────────────────────────────────────── */
         footer {
             border-top: 1px solid var(--border);
             text-align: center;
@@ -405,7 +391,6 @@
             color: #222;
         }
 
-        /* ── RESPONSIVO ─────────────────────────────────── */
         @media (max-width: 620px) {
             .hero {
                 padding: 60px 24px 60px;
@@ -420,7 +405,6 @@
 
 <body>
 
-    <!-- ── HERO ── -->
     <div class="hero">
         <div class="watermark" aria-hidden="true">SCAR</div>
         <div class="hero-inner">
@@ -435,11 +419,6 @@
 
     <main>
 
-        <!-- ── IMAGEM COM SRC RELATIVO, ALT E LEGENDA ── -->
-        <!--
-            A imagem é exibida por padrão.
-            O placeholder só aparece se o arquivo não for encontrado.
-        -->
         <figure>
             <img src="imagens/rog-scar-16.webp"
                 alt="Notebook ASUS ROG Strix SCAR 16 aberto sobre mesa, com iluminação RGB vermelha no teclado e tela ligada exibindo jogo"
@@ -454,7 +433,6 @@
             </figcaption>
         </figure>
 
-        <!-- ── LISTA NÃO-ORDENADA: CARACTERÍSTICAS ── -->
         <section>
             <h2>Características</h2>
             <ul>
@@ -487,7 +465,6 @@
             </ol>
         </section>
 
-        <!-- ── TABELA DE ESPECIFICAÇÕES ── -->
         <section>
             <h2>Especificações Técnicas</h2>
             <div class="table-shell">
@@ -555,16 +532,13 @@
             </div>
         </section>
 
-        <!-- ── LINKS: EXTERNO (target="_blank") E INTERNO ── -->
         <section>
             <h2>Links Úteis</h2>
             <div class="link-row">
-                <!-- link externo -->
                 <a href="https://rog.asus.com/br/laptops/rog-strix/rog-strix-scar-16-2025/" target="_blank"
                     class="btn btn-primary">
                     ↗ Site oficial ROG SCAR 16
                 </a>
-                <!-- link interno -->
                 <a href="atividade_a.html" class="btn btn-ghost">
                     ← Inteligência Artificial
                 </a>
