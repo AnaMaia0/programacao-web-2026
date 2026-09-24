@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saxofone Alto — O Sopro da Alma</title>
+
+    <!-- Fontes do Google: Cormorant Garamond (display) + IBM Plex Sans (corpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Arquivo de estilos externo, separado do HTML conforme exigido -->
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO: fixo no topo, com logo e botão de alternância de tema -->
+    <header class="header">
+        <div class="container header__inner">
+            <span class="logo">🎷 Saxofone Alto</span>
+            <button id="btn-modo" class="btn-modo">
+                <span id="icone-modo">☀️</span>
+                <span id="texto-modo">Modo Claro</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============================
+             SEÇÃO HERO
+             Apresentação principal + imagem real do instrumento + saudação
+             ============================ -->
+        <section id="hero" class="hero">
+            <div class="container hero__inner">
+
+                <!-- Lado esquerdo: textos e interação -->
+                <div class="hero__texto">
+                    <p class="hero__tag">♪ Jazz · POP · Música Clássica</p>
+                    <h1 class="hero__titulo">Saxofone<br>Alto</h1>
+                    <p class="hero__subtitulo">
+                        Um instrumento que não apenas soa — ele fala,<br>
+                        chora e sorri com você.
+                    </p>
+
+                    <!-- Caixa de saudação personalizada: usa evento input no JS -->
+                    <div class="hero__saudacao-box">
+                        <label for="campo-nome" class="campo-label">Como posso te chamar?</label>
+                        <input type="text" id="campo-nome" class="campo-input" placeholder="Digite seu nome..."
+                            maxlength="40">
+                        <!-- Parágrafo onde o JS insere a mensagem personalizada -->
+                        <p id="saudacao" class="saudacao-msg"></p>
+                    </div>
+                </div>
+
+                <!-- Lado direito: imagem real do saxofone alto -->
+                <figure class="hero__figura">
+                    <img src="https://images.equipboard.com/blog_content/Alto-l.webp" alt="Saxofone Alto dourado"
+                        class="hero__img-sax" loading="eager">
+                </figure>
+
+            </div>
+        </section>
+
+        <!-- ============================
+             SEÇÃO FAMÍLIA DO SAXOFONE
+             Tipos com imagens reais, descrições e informações
+             ============================ -->
+        <section id="tipos" class="tipos">
+            <div class="container">
+                <h2 class="secao-titulo">A Família do Saxofone</h2>
+                <p class="secao-desc">
+                    Inventado em 1846 pelo belga Adolphe Sax, o saxofone existe em diversas variações —
+                    do agudíssimo sopranino ao gigantesco barítono. Todos compartilham a mesma
+                    digitação, o que facilita a transição entre eles.
+                </p>
+
+                <!-- Grade de cartões, um por tipo de saxofone -->
+                <div class="tipos__grade">
+
+                    <!-- Sopranino -->
+                    <article class="tipo-card">
+                        <figure class="tipo-card__figura">
+                            <img src="https://images.equipboard.com/blog_content/Sopranino-l.webp"
+                                alt="Saxofone Sopranino" loading="lazy">
+                        </figure>
+                        <div class="tipo-card__corpo">
+                            <div class="tipo-card__cabecalho">
+                                <h3 class="tipo-card__nome">Sopranino</h3>
+                                <span class="tipo-card__afin">Mi♭</span>
+                            </div>
+                            <p class="tipo-card__desc">
+                                O menor da família. Som cristalino e penetrante, exige
+                                controle preciso da embocadura. Raramente visto em palcos.
+                            </p>
+                            <div class="tipo-card__tags">
+                                <span class="tag">Música Contemporânea</span>
+                                <span class="tag">Conjuntos de sax</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Soprano -->
+                    <article class="tipo-card">
+                        <figure class="tipo-card__figura">
+                            <img src="https://images.equipboard.com/blog_content/Soprano-saxophone-l.webp"
+                                alt="Saxofone Soprano" loading="lazy">
+                        </figure>
+                        <div class="tipo-card__corpo">
+                            <div class="tipo-card__cabecalho">
+                                <h3 class="tipo-card__nome">Soprano</h3>
+                                <span class="tipo-card__afin">Si♭</span>
+                            </div>
+                            <p class="tipo-card__desc">
+                                Geralmente reto, com timbre doce e vocal. Muito popular no jazz
+                                suave e na música clássica. Exige boa afinação do músico.
+                            </p>
+                            <p class="tipo-card__musicos">Kenny G · John Coltrane · Wayne Shorter</p>
+                            <div class="tipo-card__tags">
+                                <span class="tag">Jazz</span>
+                                <span class="tag">Smooth Jazz</span>
+                                <span class="tag">Clássico</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Saxofone Alto — DESTAQUE: é o instrumento que a autora toca -->
+                    <article class="tipo-card tipo-card--destaque">
+                        <div class="tipo-card__badge">⭐ O instrumento que toco</div>
+                        <figure class="tipo-card__figura">
+                            <img src="https://images.equipboard.com/blog_content/Alto-l.webp" alt="Saxofone Alto"
+                                loading="eager">
+                        </figure>
+                        <div class="tipo-card__corpo">
+                            <div class="tipo-card__cabecalho">
+                                <h3 class="tipo-card__nome">Alto</h3>
+                                <span class="tipo-card__afin">Mi♭</span>
+                            </div>
+                            <p class="tipo-card__desc">
+                                O mais popular de todos. Equilibra tamanho, resposta e
+                                expressividade — perfeito para iniciantes e profissionais.
+                                Fundamental no desenvolvimento do jazz.
+                            </p>
+                            <p class="tipo-card__musicos">Charlie Parker · Cannonball Adderley · Paul Desmond</p>
+                            <div class="tipo-card__tags">
+                                <span class="tag">Jazz</span>
+                                <span class="tag">Choro</span>
+                                <span class="tag">Pop</span>
+                                <span class="tag">Clássico</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Tenor -->
+                    <article class="tipo-card">
+                        <figure class="tipo-card__figura">
+                            <img src="https://images.equipboard.com/blog_content/Tenor-saxophone-l.webp"
+                                alt="Saxofone Tenor" loading="lazy">
+                        </figure>
+                        <div class="tipo-card__corpo">
+                            <div class="tipo-card__cabecalho">
+                                <h3 class="tipo-card__nome">Tenor</h3>
+                                <span class="tipo-card__afin">Si♭</span>
+                            </div>
+                            <p class="tipo-card__desc">
+                                A voz clássica do jazz. Tom encorpado e poderoso, com range
+                                próximo à voz masculina. Aparece mais no rock e no blues.
+                            </p>
+                            <p class="tipo-card__musicos">John Coltrane · Sonny Rollins · Michael Brecker</p>
+                            <div class="tipo-card__tags">
+                                <span class="tag">Jazz</span>
+                                <span class="tag">Blues</span>
+                                <span class="tag">Rock</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Barítono -->
+                    <article class="tipo-card">
+                        <figure class="tipo-card__figura">
+                            <img src="https://images.equipboard.com/blog_content/Baritone-l.webp"
+                                alt="Saxofone Barítono" loading="lazy">
+                        </figure>
+                        <div class="tipo-card__corpo">
+                            <div class="tipo-card__cabecalho">
+                                <h3 class="tipo-card__nome">Barítono</h3>
+                                <span class="tipo-card__afin">Mi♭</span>
+                            </div>
+                            <p class="tipo-card__desc">
+                                O maior e mais grave dos saxofones comuns. Som grave e poderoso,
+                                ancora qualquer ensemble. Exige grande capacidade pulmonar.
+                            </p>
+                            <p class="tipo-card__musicos">Gerry Mulligan · Harry Carney · Pepper Adams</p>
+                            <div class="tipo-card__tags">
+                                <span class="tag">Big Band</span>
+                                <span class="tag">Funk</span>
+                                <span class="tag">Jazz de câmara</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div><!-- /.tipos__grade -->
+            </div>
+        </section>
+
+        <!-- ============================
+             SEÇÃO SIMULADOR DE NOTAS
+             Clique nos botões ou pressione teclas para ouvir as notas
+             ============================ -->
+        <section id="notas" class="notas">
+            <div class="container">
+                <h2 class="secao-titulo">Simulador de Notas</h2>
+                <p class="secao-desc">
+                    Clique em uma nota ou pressione
+                    <kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><kbd>F</kbd>
+                    <kbd>G</kbd><kbd>H</kbd><kbd>J</kbd> no teclado.
+                </p>
+
+                <!-- Painel que exibe e anima a nota selecionada -->
+                <div class="display-nota" id="display-nota">
+                    <span id="nome-nota">—</span>
+                    <span id="desc-nota" class="desc-nota">Selecione uma nota para começar</span>
+                </div>
+
+                <!-- Botões das notas com frequências para a Web Audio API -->
+                <div class="notas__grade" id="grade-notas">
+                    <button class="btn-nota" data-nota="Dó" data-cor="#C8880D" data-tecla="a"
+                        data-freq="261.63">Dó</button>
+                    <button class="btn-nota" data-nota="Ré" data-cor="#C45527" data-tecla="s"
+                        data-freq="293.66">Ré</button>
+                    <button class="btn-nota" data-nota="Mi" data-cor="#2569C4" data-tecla="d"
+                        data-freq="329.63">Mi</button>
+                    <button class="btn-nota" data-nota="Fá" data-cor="#1A9E7A" data-tecla="f"
+                        data-freq="349.23">Fá</button>
+                    <button class="btn-nota" data-nota="Sol" data-cor="#8A35B5" data-tecla="g"
+                        data-freq="392.00">Sol</button>
+                    <button class="btn-nota" data-nota="Lá" data-cor="#BD1F40" data-tecla="h"
+                        data-freq="440.00">Lá</button>
+                    <button class="btn-nota" data-nota="Si" data-cor="#7A9A10" data-tecla="j"
+                        data-freq="493.88">Si</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================
+             SEÇÃO CURTIDAS
+             Contador interativo de curtidas
+             ============================ -->
+        <section id="curtidas" class="curtidas">
+            <div class="container curtidas__inner">
+                <div class="curtidas__texto">
+                    <h2 class="secao-titulo">Curte saxofone também?</h2>
+                    <p class="secao-desc">Mostre seu amor pelo instrumento!</p>
+                </div>
+                <div class="curtidas__acao">
+                    <!-- Botão principal de curtir: evento click registrado no script.js -->
+                    <button id="btn-curtir" class="btn-curtir">🎷 Curtir</button>
+                    <p class="curtidas__numero">
+                        <span id="contador">0</span> pessoas curtem isso
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+        <div class="container">
+            <p>Feito com paixão pela música · Atividade de Programação Web · UFOPA</p>
+        </div>
+    </footer>
+
+    <!-- Arquivo JavaScript externo, separado conforme exigido -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
