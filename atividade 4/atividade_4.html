@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080c14;
+            --surface: #0e1420;
+            --surface-2: #141c2c;
+            --border: rgba(96, 165, 250, 0.10);
+            --border-hi: rgba(96, 165, 250, 0.28);
+            --accent: #60a5fa;
+            --accent-dim: rgba(96, 165, 250, 0.10);
+            --text: #e2e8f0;
+            --text-soft: #94a3b8;
+            --text-muted: #475569;
+            --danger: #f87171;
+            --r: 10px;
+            --r-sm: 7px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* ─── HEADER ─────────────────────────────── */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 36px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .logo em {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        .meta {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ─── LAYOUT ─────────────────────────────── */
+        .layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            min-height: calc(100vh - 55px);
+        }
+
+        /* ─── SIDEBAR ────────────────────────────── */
+        aside {
+            border-right: 1px solid var(--border);
+            padding: 28px 22px;
+            position: sticky;
+            top: 55px;
+            height: calc(100vh - 55px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+
+        .aside-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        .field {
+            margin-bottom: 13px;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-soft);
+            margin-bottom: 5px;
+        }
+
+        label .val {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 9px 12px;
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+
+        select option {
+            background: #141c2c;
+        }
+
+        textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        /* Slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 3px;
+            background: var(--surface-2);
+            border-radius: 99px;
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 6px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+            box-shadow: 0 0 0 2px var(--accent);
+            cursor: pointer;
+        }
+
+        input[type="range"]:focus,
+        input[type="range"]:focus-visible {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Buttons */
+        .btn-save {
+            width: 100%;
+            padding: 11px;
+            background: var(--accent);
+            color: #04080f;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            border: none;
+            border-radius: var(--r-sm);
+            cursor: pointer;
+            margin-top: 6px;
+            transition: opacity 0.15s, transform 0.1s;
+        }
+
+        .btn-save:hover {
+            opacity: 0.88;
+        }
+
+        .btn-save:active {
+            transform: scale(0.98);
+        }
+
+        .btn-clear {
+            width: 100%;
+            padding: 9px;
+            background: transparent;
+            color: var(--danger);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(248, 113, 113, 0.25);
+            border-radius: var(--r-sm);
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .btn-clear:hover {
+            background: rgba(248, 113, 113, 0.07);
+            border-color: rgba(248, 113, 113, 0.5);
+        }
+
+        /* ─── MAIN ───────────────────────────────── */
+        main {
+            padding: 28px 32px;
+        }
+
+        .main-top {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .main-title {
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .count {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Empty state */
+        .empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 72px 24px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .empty-icon {
+            font-size: 38px;
+            opacity: 0.3;
+            margin-bottom: 2px;
+        }
+
+        .empty h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-soft);
+        }
+
+        .empty p {
+            font-size: 13px;
+        }
+
+        /* Cards grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
+            gap: 13px;
+        }
+
+        /* Card */
+        .card {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 17px 17px 19px;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.2s;
+            animation: in 0.22s ease both;
+        }
+
+        @keyframes in {
+            from {
+                opacity: 0;
+                transform: translateY(7px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .card:hover {
+            border-color: var(--border-hi);
+            transform: translateY(-2px);
+        }
+
+        /* Barra de nota na base do card */
+        .card-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 0 1px 0 0;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 11px;
+        }
+
+        .badge {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid var(--border-hi);
+            padding: 2px 8px;
+            border-radius: 99px;
+        }
+
+        .btn-rm {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 17px;
+            line-height: 1;
+            cursor: pointer;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: color 0.15s, background 0.15s;
+        }
+
+        .btn-rm:hover {
+            color: var(--danger);
+            background: rgba(248, 113, 113, 0.08);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+            margin-bottom: 9px;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .year {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .stars {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--accent);
+        }
+
+        .score {
+            margin-left: auto;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-soft);
+        }
+
+        .card-comment {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.55;
+            border-top: 1px solid var(--border);
+            padding-top: 9px;
+            margin-top: 10px;
+            padding-bottom: 2px;
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────── */
+        @media (max-width: 700px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                position: static;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            header {
+                padding: 14px 18px;
+            }
+
+            main {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Cine<em>Log</em></div>
+        <div class="meta">Discente: Ana Clara Lages Maia</div>
+    </header>
+
+    <div class="layout">
+
+        <!-- ── FORMULÁRIO ─────────────────────────────── -->
+        <aside>
+            <p class="aside-label">Novo registro</p>
+            <form id="form">
+
+                <div class="field">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" placeholder="Ex: Clube da Luta" required>
+                </div>
+
+                <div class="field">
+                    <label for="genero">Gênero</label>
+                    <select id="genero" required>
+                        <option value="" disabled selected>Selecione…</option>
+                        <option>Ação</option>
+                        <option>Animação</option>
+                        <option>Aventura</option>
+                        <option>Comédia</option>
+                        <option>Documentário</option>
+                        <option>Drama</option>
+                        <option>Ficção Científica</option>
+                        <option>Romance</option>
+                        <option>Terror</option>
+                        <option>Thriller</option>
+                    </select>
+                </div>
+
+                <div class="row-2">
+                    <div class="field">
+                        <label for="ano">Ano</label>
+                        <input type="number" id="ano" min="1888" max="2099" placeholder="2024" required>
+                    </div>
+                    <div class="field">
+                        <label for="nota">Nota <span class="val" id="nota-display">7</span>/10</label>
+                        <input type="range" id="nota" min="1" max="10" value="7"
+                            oninput="document.getElementById('nota-display').textContent = this.value">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="comentario">Comentário</label>
+                    <textarea id="comentario" placeholder="O que você achou? (opcional)"></textarea>
+                </div>
+
+                <button type="submit" class="btn-save">Salvar no catálogo</button>
+            </form>
+
+            <button class="btn-clear" id="btn-limpar">Limpar todos os registros</button>
+        </aside>
+
+        <!-- ── CATÁLOGO ────────────────────────────────── -->
+        <main>
+            <div class="main-top">
+                <h2 class="main-title">Meu catálogo</h2>
+                <span class="count" id="count"></span>
+            </div>
+
+            <div id="empty" class="empty">
+                <div class="empty-icon">🎞️</div>
+                <h3>Nenhum filme registrado</h3>
+                <p>Adicione o primeiro usando o formulário ao lado.</p>
+            </div>
+
+            <div id="lista" class="grid"></div>
+        </main>
+
+    </div>
+
+    <script>
+        const CHAVE = 'cinelog-registros';
+
+        // Passo 3 — Recuperar lista: getItem + JSON.parse (ou [] se null / primeira vez)
+        let registros = JSON.parse(localStorage.getItem(CHAVE)) || [];
+
+        const form = document.getElementById('form');
+        const lista = document.getElementById('lista');
+        const empty = document.getElementById('empty');
+        const count = document.getElementById('count');
+        const btnLimpar = document.getElementById('btn-limpar');
+
+        // Passo 1 — Formulário captura valores no submit (com preventDefault)
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Passo 2 — Criar objeto juntando os valores
+            const registro = {
+                id: Date.now(),
+                titulo: document.getElementById('titulo').value.trim(),
+                genero: document.getElementById('genero').value,
+                ano: Number(document.getElementById('ano').value),
+                nota: Number(document.getElementById('nota').value),
+                comentario: document.getElementById('comentario').value.trim()
+            };
+
+            // Passo 4 — Adicionar e salvar: push() → JSON.stringify() → setItem()
+            registros.push(registro);
+            localStorage.setItem(CHAVE, JSON.stringify(registros));
+
+            // Passo 5 — Mostrar na tela
+            exibir();
+
+            // Resetar formulário
+            form.reset();
+            document.getElementById('nota').value = 7;
+            document.getElementById('nota-display').textContent = '7';
+        });
+
+        // Limpar tudo
+        btnLimpar.addEventListener('click', function () {
+            if (!registros.length) return;
+            if (!confirm('Limpar todos os filmes do catálogo?')) return;
+            registros = [];
+            localStorage.removeItem(CHAVE);
+            exibir();
+        });
+
+        // Remover um registro individual
+        function remover(id) {
+            registros = registros.filter(r => r.id !== id);
+            localStorage.setItem(CHAVE, JSON.stringify(registros));
+            exibir();
+        }
+
+        // Converte nota (1–10) em estrelas (1–5 ★)
+        function toEstrelas(nota) {
+            const cheias = Math.round(nota / 2);
+            return '★'.repeat(cheias) + '☆'.repeat(5 - cheias);
+        }
+
+        // Passo 5 — Percorrer com for...of e desenhar no DOM
+        function exibir() {
+            lista.innerHTML = '';
+
+            const vazio = registros.length === 0;
+            empty.style.display = vazio ? 'flex' : 'none';
+            count.textContent = vazio ? '' : `${registros.length} filme${registros.length !== 1 ? 's' : ''}`;
+
+            for (const reg of registros) {
+                const card = document.createElement('article');
+                card.className = 'card';
+
+                card.innerHTML = `
+                <div class="card-bar" style="width:${reg.nota * 10}%"></div>
+                <div class="card-top">
+                    <span class="badge">${reg.genero}</span>
+                    <button class="btn-rm" onclick="remover(${reg.id})" title="Remover">×</button>
+                </div>
+                <h3 class="card-title">${reg.titulo}</h3>
+                <div class="card-meta">
+                    <span class="year">${reg.ano}</span>
+                    <span class="stars">${toEstrelas(reg.nota)}</span>
+                    <span class="score">${reg.nota}/10</span>
+                </div>
+                ${reg.comentario ? `<p class="card-comment">${reg.comentario}</p>` : ''}
+            `;
+
+                lista.appendChild(card);
+            }
+        }
+
+        // Passo 6 — Persistir: chamar exibir() ao carregar a página
+        exibir();
+    </script>
+
+</body>
+
+</html>
