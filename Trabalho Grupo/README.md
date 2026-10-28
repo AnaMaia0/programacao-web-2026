@@ -4,7 +4,7 @@ Aplicação web desenvolvida para a avaliação **Trabalho em Grupo 1** da disci
 
 ---
 
-## 👥 Integrantes do Grupo
+## Integrantes do Grupo
 
 | Nome | Matrícula |
 | :--- | :--- |
@@ -13,7 +13,7 @@ Aplicação web desenvolvida para a avaliação **Trabalho em Grupo 1** da disci
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - **Destaques na Página Inicial (`Início`)**: Carregamento dinâmico de uma seleção curada de receitas populares ao abrir a aplicação.
 - **Catálogo de A a Z (`Catálogo`)**: Barra alfabética interativa gerada dinamicamente via DOM para explorar receitas pela letra inicial.
@@ -26,7 +26,7 @@ Aplicação web desenvolvida para a avaliação **Trabalho em Grupo 1** da disci
 
 ---
 
-## 🚀 Tecnologias e APIs Utilizadas
+## Tecnologias e APIs Utilizadas
 
 - **HTML5 Semântico**: Estruturação com `<header>`, `<nav>`, `<main>`, `<article>`, `<form>` e atributos de acessibilidade ARIA.
 - **CSS3**: Estilização própria com variáveis CSS (`:root`), *CSS Grid*, *Flexbox*, animações e *Media Queries* (sem uso de frameworks).
