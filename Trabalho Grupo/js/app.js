@@ -346,6 +346,7 @@ var lastQuery = '';
 var cacheTraducoes = {}; // cache em memória para evitar chamadas repetidas
 
 // ── SELETORES DOM ─────────────────────────────────────────────
+var searchForm = document.getElementById('search-form');
 var searchInput = document.getElementById('search-input');
 var searchBtn = document.getElementById('search-btn');
 var tabHome = document.getElementById('tab-home');
@@ -932,6 +933,7 @@ function switchView(view) {
     } else if (view === 'catalog') {
         updateTabs('catalog');
         alphaWrapper.hidden = false;
+        atualizarTopAlphaBar();
         loadCatalogByLetter(currentLetter);
     } else if (view === 'favorites') {
         updateTabs('favorites');
@@ -948,15 +950,14 @@ tabHome.addEventListener('click', function () { switchView('home'); });
 tabCatalog.addEventListener('click', function () { switchView('catalog'); });
 tabFavorites.addEventListener('click', function () { switchView('favorites'); });
 
-searchInput.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        var q = searchInput.value.trim();
-        if (q) { alphaWrapper.hidden = true; searchMeals(q); }
-    }
-});
-searchBtn.addEventListener('click', function () {
+searchForm.addEventListener('submit', function (e) {
+    e.preventDefault(); //Impede o recarregamento padrão da página ao enviar o formulário
+
     var q = searchInput.value.trim();
-    if (q) { alphaWrapper.hidden = true; searchMeals(q); }
+    if (q) {
+        alphaWrapper.hidden = true;
+        searchMeals(q);
+    }
 });
 
 retryBtn.addEventListener('click', function () {
@@ -986,9 +987,8 @@ logoBtn.addEventListener('click', function (e) {
  */
 function atualizarTopAlphaBar() {
     var headerEl = document.querySelector('.header');
-    var tabsEl = document.querySelector('.tabs');
-    if (headerEl && tabsEl) {
-        alphaWrapper.style.top = (headerEl.offsetHeight + tabsEl.offsetHeight) + 'px';
+    if (headerEl) {
+        alphaWrapper.style.top = (headerEl.offsetHeight - 1) + 'px';
     }
 }
 window.addEventListener('resize', atualizarTopAlphaBar);

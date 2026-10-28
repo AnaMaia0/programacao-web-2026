@@ -21,31 +21,29 @@
                 <span class="logo__icon" aria-hidden="true">🍽</span>
                 <span class="logo__text">RecipeFolio</span>
             </a>
-            <div class="search-bar" role="search">
+            <nav class="tabs" aria-label="Navegação principal">
+                <div class="tabs__inner">
+                    <button class="tab tab--active" id="tab-home">Início</button>
+                    <button class="tab" id="tab-catalog">Catálogo</button>
+                    <button class="tab" id="tab-favorites">
+                        Favoritos
+                        <span class="tab__badge" id="fav-count">0</span>
+                    </button>
+                </div>
+            </nav>
+            <form class="search-bar" id="search-form" role="search">
                 <input type="text" id="search-input" class="search-bar__input" placeholder="Buscar receitas…"
                     autocomplete="off" aria-label="Campo de busca">
-                <button class="search-bar__btn" id="search-btn" aria-label="Buscar">
+                <button type="submit" class="search-bar__btn" id="search-btn" aria-label="Buscar">
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="11" cy="11" r="8" />
                         <path d="m21 21-4.35-4.35" />
                     </svg>
                 </button>
-            </div>
+            </form>
         </div>
     </header>
-
-    <!-- ── NAVEGAÇÃO POR ABAS ───────────────────────── -->
-    <nav class="tabs" aria-label="Navegação principal">
-        <div class="tabs__inner">
-            <button class="tab tab--active" id="tab-home">Início</button>
-            <button class="tab" id="tab-catalog">Catálogo</button>
-            <button class="tab" id="tab-favorites">
-                Favoritos
-                <span class="tab__badge" id="fav-count">0</span>
-            </button>
-        </div>
-    </nav>
 
     <!-- ── BARRA DE LETRAS (visível só no catálogo) ── -->
     <div class="alpha-wrapper" id="alpha-wrapper" hidden>
@@ -82,7 +80,7 @@
 
     <!-- ── MODAL DE DETALHES ────────────────────────── -->
     <div class="modal-overlay" id="modal-overlay" hidden role="dialog" aria-modal="true"
-        aria-labelledby="modal-title-el">
+        aria-labelledby="modal-nome">
         <div class="modal" id="modal">
             <button class="modal__close" id="modal-close" aria-label="Fechar">✕</button>
             <div class="modal__content" id="modal-content"></div>

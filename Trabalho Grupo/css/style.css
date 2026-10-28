@@ -17,14 +17,14 @@
     --surface: #141210;
     --card: #1b1815;
     --card-hover: #221f1b;
-    --border: #2c2820;
+    --border: #3e3e3e;
     --border-hi: #3d3830;
     --accent: #e8a030;
     --accent-dim: rgba(232, 160, 48, .12);
     --fav: #e05550;
     --fav-dim: rgba(224, 85, 80, .12);
     --text: #f0ede8;
-    --text-muted: #8a7d70;
+    --text-muted: #c3c3c3;
     --text-subtle: #4a4238;
     --radius: 10px;
     --radius-sm: 6px;
@@ -79,6 +79,7 @@ img {
 
 .logo__icon {
     font-size: 1.35rem;
+    color: white;
 }
 
 .logo__text {
@@ -141,8 +142,6 @@ img {
     position: sticky;
     top: 55px;
     z-index: 99;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
 }
 
 .tabs__inner {
@@ -200,10 +199,10 @@ img {
     /* calculado e sobrescrito por atualizarTopAlphaBar() em JS */
     z-index: 500;
     /* alto o suficiente para ficar sempre acima dos cards */
-    background: var(--bg);
+    background: rgba(14, 12, 10, .92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, .6);
-    /* sombra que separa visualmente da grade */
     overflow-x: auto;
     scrollbar-width: none;
 }
@@ -463,7 +462,7 @@ img {
     background: rgba(0, 0, 0, .72);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    z-index: 200;
+    z-index: 1000;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -549,6 +548,9 @@ img {
 
 .modal__fav-btn {
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
     padding: .45rem 1rem;
     border-radius: var(--radius-sm);
     background: none;
@@ -613,6 +615,7 @@ img {
 .ingredient-item .measure {
     color: var(--accent);
     font-weight: 600;
+    margin-right: .35rem;
 }
 
 .modal__instructions {
