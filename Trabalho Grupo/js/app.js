@@ -418,7 +418,7 @@ async function traduzirChunk(texto) {
     if (!texto || !texto.trim()) return texto;
     if (cacheTraducoes[texto]) return cacheTraducoes[texto];
     try {
-        var resp = await fetch(TRANSLATE_BASE + '?q=' + encodeURIComponent(texto) + '&langpair=en|pt-BR');
+        var resp = await fetch(TRANSLATE_BASE + '?q=' + encodeURIComponent(texto) + '&langpair=en|pt-BR&de=roberta.mmendes@gmail.com');
         if (!resp.ok) return texto;
         var data = await resp.json();
         var resultado = (data.responseStatus === 200) ? data.responseData.translatedText : texto;
@@ -736,7 +736,7 @@ function renderMeals(meals) {
     for (var i = 0; i < meals.length; i++) fragment.appendChild(createMealCard(meals[i]));
     mealsGrid.appendChild(fragment);
     // Traduz nomes dos cards em background (sem bloquear a renderização)
-    traduzirNomesCards();
+    if (currentView !== 'catalog') traduzirNomesCards();
 }
 
 function renderFavoritesView() {
