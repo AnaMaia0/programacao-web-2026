@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameShelf</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M6 11H8M7 10V12M14 11.5H14.01M16.5 10.5H16.51M9.5 7H14.5C17.5 7 19 8.5 19 11.5C19 14.5 17.5 16 14.5 16H9.5C6.5 16 5 14.5 5 11.5C5 8.5 6.5 7 9.5 7Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M3 19L5.5 16M21 19L18.5 16" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" />
+                </svg>
+                <span>Game<strong>Shelf</strong></span>
+            </div>
+            <div class="header-actions">
+                <button class="btn-outline" id="btn-report">📊 Relatório</button>
+                <button class="btn-primary" id="btn-add">+ Adicionar jogo</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Toolbar: busca + ordenação -->
+        <div class="toolbar">
+            <div class="search-box">
+                <svg viewBox="0 0 20 20" fill="none">
+                    <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M13 13L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <input type="search" id="search" placeholder="Buscar por título...">
+            </div>
+            <div class="sort-controls">
+                <select id="sort-by">
+                    <option value="id">Padrão</option>
+                    <option value="titulo">Título A–Z</option>
+                    <option value="nota">Nota</option>
+                    <option value="ano_lancamento">Ano</option>
+                    <option value="genero">Gênero</option>
+                </select>
+                <select id="sort-order">
+                    <option value="asc">↑ Crescente</option>
+                    <option value="desc">↓ Decrescente</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="games-grid" class="games-grid"></div>
+
+        <div id="empty-state" class="empty-state hidden">
+            <div class="empty-icon">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <path
+                        d="M12 22H16M14 20V24M28 23H28.02M32 21H32.02M19 14H29C35 14 38 17 38 23C38 29 35 32 29 32H19C13 32 10 29 10 23C10 17 13 14 19 14Z"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M6 38L11 32M42 38L37 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </div>
+            <p class="empty-title">Nenhum jogo encontrado</p>
+            <p class="empty-sub">Tente buscar outro título ou <strong>adicione um jogo</strong>.</p>
+        </div>
+
+        <div id="pagination" class="pagination"></div>
+    </main>
+
+    <!-- Modal: Adicionar / Editar jogo -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Adicionar jogo</h2>
+                <button class="btn-close" id="btn-close">✕</button>
+            </div>
+            <form id="form-jogo" novalidate>
+                <input type="hidden" id="jogo-id">
+                <div class="form-grid">
+                    <div class="field full">
+                        <label for="titulo">Título <span class="required">*</span></label>
+                        <input type="text" id="titulo" placeholder="Nome do jogo" required>
+                    </div>
+                    <div class="field">
+                        <label for="genero">Gênero <span class="required">*</span></label>
+                        <input type="text" id="genero" placeholder="Ex: RPG, Ação">
+                    </div>
+                    <div class="field">
+                        <label for="plataforma">Plataforma <span class="required">*</span></label>
+                        <input type="text" id="plataforma" placeholder="Ex: PC, PS5">
+                    </div>
+                    <div class="field">
+                        <label for="desenvolvedora">Desenvolvedora <span class="required">*</span></label>
+                        <input type="text" id="desenvolvedora" placeholder="Nome do estúdio">
+                    </div>
+                    <div class="field">
+                        <label for="ano_lancamento">Ano <span class="required">*</span></label>
+                        <input type="number" id="ano_lancamento" placeholder="2024" min="1970" max="2030">
+                    </div>
+                    <div class="field">
+                        <label for="nota">Nota (0–10) <span class="required">*</span></label>
+                        <input type="number" id="nota" placeholder="9.5" min="0" max="10" step="0.1">
+                    </div>
+                    <div class="field full">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" placeholder="Uma breve descrição do jogo..." rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Detalhes + Avaliações -->
+    <div id="detail-overlay" class="modal-overlay hidden">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h2 id="detail-title">—</h2>
+                <button class="btn-close" id="detail-close">✕</button>
+            </div>
+            <div id="detail-body" class="detail-body"></div>
+        </div>
+    </div>
+
+    <!-- Modal: Relatório por gênero -->
+    <div id="report-overlay" class="modal-overlay hidden">
+        <div class="modal modal-report">
+            <div class="modal-header">
+                <h2>Relatório por Gênero</h2>
+                <button class="btn-close" id="report-close">✕</button>
+            </div>
+            <div id="report-body" class="report-body"></div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
